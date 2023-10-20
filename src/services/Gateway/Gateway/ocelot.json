@@ -1,0 +1,125 @@
+{
+  "Routes": [
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/v1/orders{everything}",
+      "UpstreamPathTemplate": "/v1/orders{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "ServiceName": "Order",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/stocks{everything}",
+      "UpstreamPathTemplate": "/v1/stocks{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "ServiceName": "Stock",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/payments{everything}",
+      "UpstreamPathTemplate": "/v1/payments{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "ServiceName": "Payment",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/reports{everything}",
+      "UpstreamPathTemplate": "/v1/reports{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "ServiceName": "Report",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/limits{everything}",
+      "UpstreamPathTemplate": "/v1/limits{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "ServiceName": "Limit",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 0,
+      "DownstreamPathTemplate": "/api/authentication/CreateToken",
+      "UpstreamPathTemplate": "/v1/authentication/CreateToken",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "ServiceName": "User",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamScheme": "http",
+      "Priority": 1,
+      "DownstreamPathTemplate": "/api/{everything}",
+      "UpstreamPathTemplate": "/v1/usermanagement/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "ServiceName": "User",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}
